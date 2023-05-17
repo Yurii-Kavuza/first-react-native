@@ -19,7 +19,7 @@ const initialState = {
   password: "",
 };
 
-export const LoginScreen = (props) => {
+export const LoginScreen = ({ navigation }) => {
   const [isKeyboardShown, setIsKeyboardShown] = useState(false);
   const [isEmailActive, setIsEmailActive] = useState(false);
   const [isPassActive, setIsPassActive] = useState(false);
@@ -110,9 +110,14 @@ export const LoginScreen = (props) => {
                   <Text style={styles.buttonTitle}>Увійти</Text>
                 </TouchableOpacity>
               </View>
-              <Text style={styles.textRedirect}>
-                Не маєте акаунта? Зареєструватися
-              </Text>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => navigation.navigate("Registration")}
+              >
+                <Text style={styles.textRedirect}>
+                  Не маєте акаунта? Зареєструватися
+                </Text>
+              </TouchableOpacity>
             </View>
           </KeyboardAvoidingView>
         </ImageBackground>

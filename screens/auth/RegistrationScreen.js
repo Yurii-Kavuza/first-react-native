@@ -20,7 +20,7 @@ const initialState = {
   password: "",
 };
 
-export const RegistrationScreen = (props) => {
+export const RegistrationScreen = ({ navigation }) => {
   const [isKeyboardShown, setIsKeyboardShown] = useState(false);
   const [isLoginActive, setIsLoginActive] = useState(false);
   const [isEmailActive, setIsEmailActive] = useState(false);
@@ -125,7 +125,14 @@ export const RegistrationScreen = (props) => {
                   <Text style={styles.buttonTitle}>Зареєструватися</Text>
                 </TouchableOpacity>
               </View>
-              <Text style={styles.textRedirect}>Вже маєте акаунт? Увійти</Text>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => navigation.navigate("Login")}
+              >
+                <Text style={styles.textRedirect}>
+                  Вже маєте акаунт? Увійти
+                </Text>
+              </TouchableOpacity>
             </View>
           </KeyboardAvoidingView>
         </ImageBackground>
