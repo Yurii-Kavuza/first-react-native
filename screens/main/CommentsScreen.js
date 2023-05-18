@@ -1,10 +1,10 @@
 import React from "react";
 import { Text, View } from "react-native";
 
-export const ComentsScreen = () => {
+export const CommentsScreen = () => {
   return (
     <View>
-      <Text>ComentsScreen</Text>
+      <Text>CommentsScreen</Text>
     </View>
   );
 };
