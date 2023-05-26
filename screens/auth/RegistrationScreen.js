@@ -1,6 +1,5 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import {
-  StyleSheet,
   Text,
   View,
   TextInput,
@@ -11,8 +10,7 @@ import {
   Keyboard,
   Platform,
 } from "react-native";
-import { useFonts } from "expo-font";
-import * as SplashScreen from "expo-splash-screen";
+import { styles } from "./AuthStyles";
 
 const initialState = {
   login: "",
@@ -26,19 +24,6 @@ export const RegistrationScreen = ({ navigation }) => {
   const [isEmailActive, setIsEmailActive] = useState(false);
   const [isPassActive, setIsPassActive] = useState(false);
   const [state, setState] = useState(initialState);
-  const [fontsLoaded] = useFonts({
-    "Roboto-Medium": require("../../assets/fonts/Roboto-Medium.ttf"),
-  });
-
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
-
-  if (!fontsLoaded) {
-    return null;
-  }
 
   const hideKeyboard = () => Keyboard.dismiss();
   const onFocus = (value) => {
@@ -72,10 +57,9 @@ export const RegistrationScreen = ({ navigation }) => {
                 ...styles.formContainer,
                 marginBottom: isKeyboardShown ? -142 : 0,
               }}
-              onLayout={onLayoutRootView}
             >
               <View style={styles.photoBox}></View>
-              <Text style={styles.text}>Реєстрація</Text>
+              <Text style={styles.headerReg}>Реєстрація</Text>
               <View style={styles.form}>
                 <View>
                   <TextInput
@@ -141,85 +125,3 @@ export const RegistrationScreen = ({ navigation }) => {
     </TouchableWithoutFeedback>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  imageBG: {
-    flex: 1,
-    flexDirection: "column",
-    resizeMode: "cover",
-    justifyContent: "flex-end",
-  },
-  formContainer: {
-    backgroundColor: "#fff",
-    borderRadius: 25,
-    borderBottomLeftRadius: 0,
-    borderBottomRightRadius: 0,
-  },
-  photoBox: {
-    alignSelf: "center",
-    marginTop: -60,
-    marginBottom: 32,
-    backgroundColor: "#f6f6f6",
-    height: 120,
-    width: 120,
-    borderRadius: 16,
-  },
-  text: {
-    alignSelf: "center",
-    marginBottom: 33,
-    fontFamily: "Roboto-Medium",
-    fontStyle: "normal",
-    fontWeight: 500,
-    fontSize: 30,
-    lineHeight: 35,
-    letterSpacing: 1,
-    color: "#212121",
-  },
-  form: {
-    marginHorizontal: 32,
-    marginBottom: 16,
-    gap: 16,
-  },
-  input: {
-    height: 50,
-    padding: 16,
-    borderWidth: 1,
-    borderRadius: 8,
-    backgroundColor: "#f6f6f6",
-    color: "#bdbdbd",
-    fontFamily: "Roboto-Medium",
-    fontStyle: "normal",
-    fontWeight: "400",
-    fontSize: 16,
-    lineHeight: 19,
-  },
-  button: {
-    height: 51,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 43,
-    backgroundColor: "#ff6c00",
-    borderRadius: 100,
-  },
-  buttonTitle: {
-    fontFamily: "Roboto-Medium",
-    fontStyle: "normal",
-    fontWeight: "400",
-    fontSize: 16,
-    lineHeight: 19,
-    color: "#fff",
-  },
-  textRedirect: {
-    marginBottom: 45,
-    fontFamily: "Roboto-Medium",
-    fontStyle: "normal",
-    fontWeight: 400,
-    fontSize: 16,
-    lineHeight: 19,
-    textAlign: "center",
-    color: "#1B4371",
-  },
-});

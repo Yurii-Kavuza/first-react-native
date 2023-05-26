@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export const PostsScreen = () => {
   return (
@@ -8,3 +8,7 @@ export const PostsScreen = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+
+});

@@ -7,6 +7,7 @@ import { LoginScreen } from "../screens/auth/LoginScreen";
 import { PostsScreen } from "../screens/main/PostsScreen";
 import { CreatePostsScreen } from "../screens/main/CreatePostsScreen";
 import { ProfileScreen } from "../screens/main/ProfileScreen";
+import { Image } from "react-native";
 
 const AuthStack = createNativeStackNavigator();
 const MainTab = createBottomTabNavigator();
@@ -29,10 +30,46 @@ export const useRoute = (isAuth) => {
     );
   }
   return (
-    <MainTab.Navigator>
-      <MainTab.Screen name="Posts" component={PostsScreen} />
-      <MainTab.Screen name="Create" component={CreatePostsScreen} />
-      <MainTab.Screen name="Profile" component={ProfileScreen} />
+    <MainTab.Navigator
+      screenOptions={{
+        tabBarActiveTintColor: "#e91e63",
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          justifyContent: "flex-end",
+          height: 83,
+        },
+      }}
+    >
+      <MainTab.Screen
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Image source={require("../assets/images/icons/grid.png")} />
+          ),
+        }}
+        name="Posts"
+        component={PostsScreen}
+      />
+      <MainTab.Screen
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Image source={require("../assets/images/icons/new.png")} />
+          ),
+        }}
+        name="Create"
+        component={CreatePostsScreen}
+      />
+      <MainTab.Screen
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Image source={require("../assets/images/icons/user.png")} />
+          ),
+        }}
+        name="Profile"
+        component={ProfileScreen}
+      />
     </MainTab.Navigator>
   );
 };
